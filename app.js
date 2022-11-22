@@ -1,20 +1,30 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const dbConnection = require('./modules/dbconnect.js');
-const addRoutes = require('./modules/addRoutes.js');
-// const mongoose = require('mongoose');
+const dbConnection = require('./models/dbconnect.js');
+
+const movieRoute = require('./routes/movieRoute.js');
+const categoryRoute = require('./routes/categoryRoute.js');
+const commentRoute = require('./routes/commentRoute.js');
+const directorRoute = require('./routes/directorRoute.js');
+
 app.use(express.json());
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
 
- // урл для сервиса с mongodb
-// const {MongoClient} = require('mongodb'); // конструктор клиентов mongodb
-// const client = new MongoClient(url); // создаем новый клиент для работы с базой
-// client.connect(); // подключаемся к базе
+ const  cors = require('cors');
 
-addRoutes(app);
+ const allowedOrigins = [''];
+ app.use(cors({ origin: allowedOrigins,  methods: "GET,PUT,POST,DELETE"}));
+
+ app.use('/movies', movieRoute);
+ app.use('/categories', categoryRoute);
+ app.use('/comments', commentRoute);
+ app.use('/directors', directorRoute);
+
+
+
 dbConnection();
 
 
