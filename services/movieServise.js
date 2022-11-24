@@ -16,4 +16,18 @@ const deleteMovie = (movie) => {
     return Movie.findOneAndDelete(movie)
 }
 
-module.exports = {createMovie, getMovie, updateMovie, deleteMovie};
+
+const addMovieComment = (movieId, commentId) =>{
+    console.log(movieId)
+    return Movie.findByIdAndUpdate(movieId,  { $push: { commentField: commentId } })
+}
+
+const gettAllMoviesByDirector = (directorId) =>{
+    return Movie.find({directorField:directorId})
+}
+
+const getAllMoviesByCategory = (categoryId) => {
+    return Movie.find({categoryField:categoryId})
+}
+
+module.exports = {createMovie, getMovie, updateMovie, deleteMovie, addMovieComment, getAllMoviesByCategory, gettAllMoviesByDirector};

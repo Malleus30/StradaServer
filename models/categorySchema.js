@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
   function returnCategoryModel(){
     const CategorySchema = new mongoose.Schema({ // определяем схему
       title: String,
-      year: Number,
-      rating: Number,
+      moviesField:[{type:'ObjectId', ref:'Movie'}] 
     });
     return mongoose.model('Category', CategorySchema);
   }

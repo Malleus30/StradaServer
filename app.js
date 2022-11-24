@@ -15,7 +15,7 @@ app.listen(port, () => {
 
  const  cors = require('cors');
 
- const allowedOrigins = [''];
+ const allowedOrigins = ['*'];
  app.use(cors({ origin: allowedOrigins,  methods: "GET,PUT,POST,DELETE"}));
 
  app.use('/movies', movieRoute);

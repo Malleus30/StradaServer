@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
       rating: Number,
       categoryField: { type: 'ObjectId', ref:"Category" },
       directorField: {type:'ObjectId', ref:"Director"},
-      commentField: {type:'ObjectId', ref:'Comment'},
+      commentField: [{type:'ObjectId', ref:'Comment'}],
     });
    
     return  mongoose.model('Movie', MovieSchema)

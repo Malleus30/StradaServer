@@ -5,10 +5,11 @@ const mongoose = require('mongoose');
   function returnCommentModel() {
     
     const CommentSchema = new mongoose.Schema({ // определяем схему
-      year: Number,
-      rating: Number,
+      time:{type:Date, default: Date.now},
+      timeOfUpdate:{type:Date},
       text:String,
-      movieId: ObjectId,
+      user:String,
+      movieId: ObjectId
     });
    
     return  mongoose.model('Comment', CommentSchema)
